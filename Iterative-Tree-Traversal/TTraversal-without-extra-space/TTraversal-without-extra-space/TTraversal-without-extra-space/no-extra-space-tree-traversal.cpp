@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-//a normal tree data structue with a left and right child
 struct TreeNode {
     int data;
     struct TreeNode* left;
@@ -51,7 +50,6 @@ struct TreeNode* newtNode(int data) {
     return tNode;
 }
 
-// function to insert a new node into the binary tree
 struct TreeNode* insertNode(struct TreeNode* root, int data) {
     if (root == NULL) {
         return newtNode(data);
@@ -71,17 +69,15 @@ struct TreeNode* insertNode(struct TreeNode* root, int data) {
 struct TreeNode* generateBinaryTree(int size) {
     struct TreeNode* root = NULL;
 
-    // random number generator
-    srand(100);
+    srand(50);
 
     for (int i = 0; i < size; ++i) {
-        int data = rand() % 100; // Random data value (adjust as needed)
+        int data = rand() % 50;
         root = insertNode(root, data);
     }
     return root;
 }
 
-// Pretty print the binary tree
 void prettyPrint(struct TreeNode* root, int space) {
     if (root == NULL) {
         return;
@@ -89,27 +85,22 @@ void prettyPrint(struct TreeNode* root, int space) {
 
     space += 5;
 
-    // Print right child first
     prettyPrint(root->right, space);
 
-    // Print current node after space
     printf("\n");
     for (int i = 5; i < space; i++)
         printf("-");
     printf("%d\n", root->data);
 
-    // Print left child
     prettyPrint(root->left, space);
 }
 
 int main() {
-    // Generate a binary tree of size 50
     struct TreeNode* root = generateBinaryTree(50);
 
     printf("\n\nPretty Print of the Binary Tree:\n\n");
     prettyPrint(root, 0);
 
-    // Perform In-order Traversal
     printf("\n\nIn-Order traversal:\n\n");
     inOrderIterativeTraversal(root);
 
