@@ -1,7 +1,5 @@
 
-
 public class BinaryTree {
-
     static class TreeNode {
         int data;
         TreeNode left, right;
@@ -30,7 +28,6 @@ public class BinaryTree {
             inOrderTraversal(root.right);
         }
     }
-
 
     public int maxPathHelper(TreeNode root, int[] maxSum){
         if(root == null){
@@ -73,6 +70,6 @@ public class BinaryTree {
         binaryTree.addNode(root,14);
         binaryTree.inOrderTraversal(root);
         System.out.println();
-        System.out.print("The diameter is : " + binaryTree.maxPathSum(root));
+        System.out.print("The maximum path calculated is : " + binaryTree.maxPathSum(root));
     }
 }
