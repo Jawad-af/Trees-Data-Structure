@@ -108,4 +108,3 @@ public class BinaryTree {
         System.out.println(binaryTree.isChildrenPropertySatisfied(root));
     }
 }
-
