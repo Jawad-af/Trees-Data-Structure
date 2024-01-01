@@ -102,9 +102,15 @@ public class BinaryTree {
         binaryTree.addNode(root,9);
         binaryTree.addNode(root,12);
         binaryTree.addNode(root,14);
-        System.out.println(binaryTree.isChildrenPropertySatisfied(root));
+
+        System.out.print("Before transformation: ");
+        binaryTree.inOrderTraversal(root);
+        System.out.println();
+        System.out.println("Is children property satisfied: " + binaryTree.isChildrenPropertySatisfied(root));
+        System.out.print("After transformation: ");
         binaryTree.transformToChildrenPropertyTree(root);
         System.out.println();
-        System.out.println(binaryTree.isChildrenPropertySatisfied(root));
+        System.out.println("Is children property satisfied: " + binaryTree.isChildrenPropertySatisfied(root));
+
     }
 }
