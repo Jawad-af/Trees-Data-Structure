@@ -73,24 +73,25 @@ public class BinaryTree {
         }
     }
     public TreeNode deserialize(String data) {
-        String[] splittedString = data.split(" ");
-        int dataLength = splittedString.length - 1;
-        int index = 0;
-        Queue<TreeNode> queue = new LinkedList<>();
-        Map<Integer, TreeNode> created = new HashMap<>();
-
-
-
-
-        //created.put(createNode.data, createNode);
-        //queue.add(createNode);
-
-        for (int i = 0; i < dataLength; i++) {
-            String rootValue = splittedString[i];
-            int numericalRootValue = Integer.parseInt(rootValue);
-            TreeNode createNode = new TreeNode(numericalRootValue);
+        if (data == "") return null;
+        Queue<TreeNode> q = new LinkedList<>();
+        String[] values = data.split(" ");
+        TreeNode root = new TreeNode(Integer.parseInt(values[0]));
+        q.add(root);
+        for (int i = 1; i < values.length; i++) {
+            TreeNode parent = q.poll();
+            if (!values[i].equals("null")) {
+                TreeNode left = new TreeNode(Integer.parseInt(values[i]));
+                parent.left = left;
+                q.add(left);
+            }
+            if (!values[++i].equals("null")) {
+                TreeNode right = new TreeNode(Integer.parseInt(values[i]));
+                parent.right = right;
+                q.add(right);
+            }
         }
-        return new TreeNode(2);
+        return root;
     }
 
 
@@ -118,10 +119,16 @@ public class BinaryTree {
         binaryTree.addNode(root,9);
         binaryTree.addNode(root,12);
         binaryTree.addNode(root,14);
-        String serialized = binaryTree.serialize(root);
-        System.out.println(serialized);
 
-        //TreeNode root2 = binaryTree.deserialize(serialized);
-        //binaryTree.inOrder(root2);
+        System.out.print("Inorder for the original tree: ");
+        binaryTree.inOrder(root);
+
+        System.out.print("\nAfter serialization: ");
+        String serialized = binaryTree.serialize(root);
+        System.out.print(serialized);
+
+        System.out.print("\nIn order after deserialization: ");
+        TreeNode root2 = binaryTree.deserialize(serialized);
+        binaryTree.inOrder(root2);
     }
 }
